@@ -1,7 +1,8 @@
 package com.ghenriqf.desafio_itau_backend.controller;
 
 
-import com.ghenriqf.desafio_itau_backend.dto.TransacaoDTO;
+import com.ghenriqf.desafio_itau_backend.dto.TransacaoEstatisticaResponse;
+import com.ghenriqf.desafio_itau_backend.dto.TransacaoRequest;
 import com.ghenriqf.desafio_itau_backend.service.TransacaoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
 public class TransacaoController {
 
     private final TransacaoService transacaoService;
@@ -20,16 +20,29 @@ public class TransacaoController {
     }
 
     @PostMapping("/transacao")
-    public ResponseEntity<?> receberTransacao (@RequestBody @Valid @NotNull TransacaoDTO transacaoDTO) {
+    public ResponseEntity<?> receberTransacao (@RequestBody @Valid @NotNull TransacaoRequest transacaoRequest) {
         try{
-            transacaoService.salvarTransacao(transacaoDTO);
+            transacaoService.salvarTransacao(transacaoRequest);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body("Transação salva com sucesso!");
+                    .build();
         } catch (Exception e) {
             return ResponseEntity
                     .status(422)
-                    .body(e.getMessage());
+                    .build();
         }
+    }
+
+    @DeleteMapping("/transacao")
+    public ResponseEntity<?> limparTransacoes () {
+        transacaoService.limparTransacoes();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .build();
+    }
+
+    @GetMapping("/estatistica")
+    public TransacaoEstatisticaResponse calcularEstatisticas () {
+        return transacaoService.calcularEstatistica();
     }
 }
