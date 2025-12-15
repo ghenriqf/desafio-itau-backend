@@ -5,7 +5,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.OffsetDateTime;
 
-public record TransacaoDTO(
+public record TransacaoRequest(
         @NotNull @PositiveOrZero Double valor,
         @NotNull OffsetDateTime dataHora
 ) {

@@ -1,6 +1,7 @@
 package com.ghenriqf.desafio_itau_backend.repository;
 
-import com.ghenriqf.desafio_itau_backend.dto.TransacaoDTO;
+import com.ghenriqf.desafio_itau_backend.dto.TransacaoRequest;
+import com.ghenriqf.desafio_itau_backend.dto.TransacaoEstatisticaResponse;
 import com.ghenriqf.desafio_itau_backend.mapper.TransacaoMapper;
 import com.ghenriqf.desafio_itau_backend.model.Transacao;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,16 @@ public class TransacaoRepository {
         this.transacaoMapper = transacaoMapper;
     }
 
-    public void salvarTransacao (TransacaoDTO transacaoDTO) {
-        transacaos.add(transacaoMapper.toModel(transacaoDTO));
+    public void salvarTransacao (TransacaoRequest transacaoRequest) {
+        transacaos.add(transacaoMapper.toModel(transacaoRequest));
     }
+
+    public void limparTransacoes () {
+        transacaos.clear();
+    }
+
+    public ArrayList<Transacao> obterTransacoes () {
+        return transacaos;
+    }
+
 }
