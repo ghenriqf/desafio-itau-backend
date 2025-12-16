@@ -2,7 +2,7 @@ package com.ghenriqf.desafio_itau_backend.service;
 
 import com.ghenriqf.desafio_itau_backend.dto.TransacaoEstatisticaResponse;
 import com.ghenriqf.desafio_itau_backend.dto.TransacaoRequest;
-import com.ghenriqf.desafio_itau_backend.model.Transacao;
+import com.ghenriqf.desafio_itau_backend.exception.TransacaoInvalidaException;
 import com.ghenriqf.desafio_itau_backend.repository.TransacaoRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class TransacaoService {
         Instant dataHoraTransacao = transacaoRequest.dataHora().toInstant();
 
         if (dataHoraTransacao.isAfter(dataHoraAgora)) {
-            throw new IllegalArgumentException("Data invalida");
+            throw new TransacaoInvalidaException("Data inválida.");
         }
         transacaoRepository.salvarTransacao(transacaoRequest);
     }

@@ -32,17 +32,12 @@ public class TransacaoController {
             @ApiResponse(responseCode = "422", description = "Transação inválida segundo as regras de negócio")
     })
     @PostMapping("/transacao")
-    public ResponseEntity<?> receberTransacao (@RequestBody @Valid @NotNull TransacaoRequest transacaoRequest) {
-        try{
-            transacaoService.salvarTransacao(transacaoRequest);
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .build();
-        } catch (Exception e) {
-            return ResponseEntity
-                    .status(422)
-                    .build();
-        }
+    public ResponseEntity<?> receberTransacao(@RequestBody @Valid @NotNull TransacaoRequest transacaoRequest) {
+        transacaoService.salvarTransacao(transacaoRequest);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .build();
+
     }
 
     @Operation(
