@@ -107,14 +107,6 @@ A aplicação utiliza um mecanismo centralizado de tratamento de exceções para
 - `@ControllerAdvice`: Garante a centralização do tratamento de exceções.
 - `.ResponseEntity`: Respostas padronizadas para erros.
 
-Exemplo de resposta para `MethodArgumentNotValidException`:
-```json
-{
-  "error": "Invalid Request",
-  "details": "The field 'valor' must be positive."
-}
-```
-
 ### 3. Monitoramento com Spring Actuator
 O Spring Actuator foi configurado para expor métricas fundamentais da aplicação, como:
 - Health check (`/actuator/health`).
