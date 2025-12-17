@@ -109,8 +109,8 @@ A aplicação utiliza um mecanismo centralizado de tratamento de exceções para
 
 ### 3. Monitoramento com Spring Actuator
 O Spring Actuator foi configurado para expor métricas fundamentais da aplicação, como:
+
 - Health check (`/actuator/health`).
-- Métricas detalhadas (`/actuator/metrics`).
 
 Essas informações auxiliam na manutenção e monitoramento da aplicação em produção.
 
